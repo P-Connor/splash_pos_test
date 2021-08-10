@@ -1,12 +1,12 @@
+import 'inventory_item.dart';
+
 class CartItem {
-  final int itemId;
+  final InventoryItem itemData;
   int quantity;
-  int price;
   List<CartItem> children = [];
 
   CartItem({
-    required this.itemId,
+    required this.itemData,
     this.quantity = 1,
-    this.price = 0,
   });
 }
