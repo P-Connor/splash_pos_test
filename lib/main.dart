@@ -42,6 +42,9 @@ class HomePage extends StatelessWidget {
 }
 
 class InventoryView extends StatelessWidget {
+  final int crossAxisCount = 10;
+  final int padding = 10;
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -49,39 +52,35 @@ class InventoryView extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
-      crossAxisCount: 2,
+      crossAxisCount: 10,
       children: <Widget>[
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Burger"),
-          color: Colors.teal[100],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Cheese Fries'),
-          color: Colors.teal[200],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Drink'),
-          color: Colors.teal[300],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Fetus'),
-          color: Colors.teal[400],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('A Toasty Chicken Strip'),
-          color: Colors.teal[500],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
-        ),
+        InventoryButton("Burger"),
+        InventoryButton("Cheese Fries"),
+        InventoryButton("Hot Dog"),
+        InventoryButton("Fetus"),
+        InventoryButton("One Toasty Chicken Strip"),
+        InventoryButton("Drink"),
+        InventoryButton("Candy"),
       ],
+    );
+  }
+}
+
+class InventoryButton extends StatelessWidget {
+  final String displayName;
+  final double maxSize = 10;
+
+  InventoryButton(this.displayName);
+
+  @override
+  Widget build(BuildContext context) {
+    return LimitedBox(
+      child: Container(
+        child: Center(child: Text(displayName, textAlign: TextAlign.center)),
+        color: Colors.teal[100],
+      ),
+      maxWidth: maxSize,
+      maxHeight: maxSize,
     );
   }
 }
@@ -91,10 +90,15 @@ class CartEditor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CartView(),
-        ElevatedButton(
-          child: Text("Complete Sale"),
-          onPressed: () {},
+        Expanded(
+          child: CartView(),
+        ),
+        SizedBox(
+          child: ElevatedButton(
+            child: Text("Complete Sale"),
+            onPressed: () {},
+          ),
+          height: 50,
         ),
       ],
     );
@@ -106,8 +110,16 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Text("Robert"),
-        Text("Richard"),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text("Burger"),
+          color: Colors.teal[100],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text("Cheese Fries"),
+          color: Colors.teal[100],
+        ),
       ],
     );
   }
