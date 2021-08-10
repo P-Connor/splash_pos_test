@@ -14,7 +14,7 @@ class Currency {
       : _value = (impreciseValue * 100.0).round();
 
   /// Returns the exact monetary value of this [Currency] object as a [double]
-  double get value => _value.toDouble() / 100.0;
+  double get value => _value.toDouble() * 0.01;
 
   Currency operator +(Currency other) => Currency(this._value + other._value);
   Currency operator -(Currency other) => Currency(this._value - other._value);
@@ -35,4 +35,9 @@ class Currency {
 
   @override
   int get hashCode => _value.hashCode;
+
+  @override
+  String toString() {
+    return "\$" + value.toStringAsFixed(2);
+  }
 }
