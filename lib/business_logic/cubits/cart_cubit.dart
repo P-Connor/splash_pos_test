@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import '../models/cart_item.dart';
+import '../../data/models/cart_item.dart';
 
 part 'cart_state.dart';
 
