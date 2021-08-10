@@ -8,9 +8,11 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
 
   int get subtotal {
-    int ret = 0;
-
-    return ret;
+    int subtotal = 0;
+    for (CartItem item in state.items) {
+      subtotal += item.price * item.quantity;
+    }
+    return subtotal;
   }
 
   void clear() {}

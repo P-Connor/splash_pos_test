@@ -1,12 +1,12 @@
 class CartItem {
-  final int? itemId;
-  int? quantity;
+  final int itemId;
+  int quantity;
+  int price;
   List<CartItem> children = [];
 
-  CartItem(this.itemId, this.quantity) {
-    print("Created new CartObject with ID " +
-        itemId.toString() +
-        " and quantity " +
-        quantity.toString());
-  }
+  CartItem({
+    required this.itemId,
+    this.quantity = 1,
+    this.price = 0,
+  });
 }

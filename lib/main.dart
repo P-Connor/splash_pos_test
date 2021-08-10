@@ -1,20 +1,114 @@
 import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(SplashPOS());
+  runApp(App());
 }
 
-class SplashPOS extends StatelessWidget {
+class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SplashPOS Test',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+        title: 'SplashPOS Test',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: BlocProvider(
+          create: (_) => CounterCubit(),
+          child: HomePage(),
+        ));
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Counter')),
+      body: Row(
+        children: [
+          Expanded(
+            child: InventoryView(),
+          ),
+          SizedBox(
+            child: CartEditor(),
+            width: 200,
+          )
+        ],
       ),
-      home: CounterPage(),
+    );
+  }
+}
+
+class InventoryView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      primary: false,
+      padding: const EdgeInsets.all(20),
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      crossAxisCount: 2,
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text("Burger"),
+          color: Colors.teal[100],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Cheese Fries'),
+          color: Colors.teal[200],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Drink'),
+          color: Colors.teal[300],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Fetus'),
+          color: Colors.teal[400],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('A Toasty Chicken Strip'),
+          color: Colors.teal[500],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Revolution, they...'),
+          color: Colors.teal[600],
+        ),
+      ],
+    );
+  }
+}
+
+class CartEditor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CartView(),
+        ElevatedButton(
+          child: Text("Complete Sale"),
+          onPressed: () {},
+        ),
+      ],
+    );
+  }
+}
+
+class CartView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        Text("Robert"),
+        Text("Richard"),
+      ],
     );
   }
 }
