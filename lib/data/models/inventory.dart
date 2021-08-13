@@ -1,12 +1,39 @@
-import 'dart:html';
-
-import 'package:flutter/widgets.dart';
-
+import 'dart:convert';
+import 'package:currency/currency.dart';
 import 'inventory_item.dart';
 
 class Inventory {
   Map<int, InventoryItem> _items = {};
   int _nextId = 0;
+
+  Inventory();
+  Inventory.fromJSON(String json) {
+    var read_items = jsonDecode(json);
+
+    assert(read_items is List);
+    Set<int> ids = {};
+
+    for (Map item in read_items) {
+      int? id = item['id'];
+
+      assert(id != null);
+      assert(item['name'] != null);
+      assert(!ids.contains(id));
+
+      if (id != null) {
+        ids.add(id);
+
+        _items[id] = InventoryItem(
+          name: item['name'],
+          displayName: item['displayName'] ?? item['name'],
+          description: item['description'] ?? "",
+          price: Currency(item['price'] ?? 0),
+          nonTax: item['nonTax'] ?? false,
+          archived: item['archived'] ?? false,
+        );
+      }
+    }
+  }
 
   int get length => _items.length;
   Iterable<int> get ids => _items.keys;
