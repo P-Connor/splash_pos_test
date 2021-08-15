@@ -1,0 +1,19 @@
+For use on www.json-generator.com
+
+[
+  '{{repeat(100)}}',
+  {
+    id: '{{index(100)}}',
+    itemType: function (tags) {
+      return 'ItemType' + tags.integer(1, 5);
+    },
+    displayName: '{{city()}} {{city()}}',
+    name: function (tags) {
+      return this.displayName.toLowerCase().split(' ').join('_');
+    },
+    description: '{{lorem(1)}}',
+    price: '{{integer(0, 15000)}}',
+    nonTax: '{{random(false, false, false, false, false, true)}}',
+    isArchived: false
+  }
+]
