@@ -1,12 +1,14 @@
+import 'package:meta/meta.dart';
 import 'package:currency/currency.dart';
 import 'package:equatable/equatable.dart';
 
+@immutable
 class InventoryItem extends Equatable {
   final String name, displayName, description;
   final Currency price;
   final bool nonTax, archived;
 
-  InventoryItem({
+  const InventoryItem({
     required this.name,
     this.displayName = "",
     this.description = "",

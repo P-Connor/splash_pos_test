@@ -1,15 +1,13 @@
-import '../data_providers/inventory_api.dart';
 import '../models/inventory.dart';
-import '../models/inventory_item.dart';
 
-class InventoryRepository {
-  Inventory? _loadedInventory;
-  final InventoryApiClient inventoryApiClient = InventoryApiClient();
+abstract class InventoryRepository {
+  /// Returns the entire stored inventory, including both
+  /// archived and unarchived items
+  Future<Inventory> get allInventory;
 
-  // TODO - Fix up
-  InventoryRepository() {
-    _loadedInventory = Inventory.fromJSON(inventoryApiClient.getAllActive());
-  }
+  /// Returns an inventory with all stored unarchived items
+  Future<Inventory> get activeInventory;
 
-  Inventory? get inventory => _loadedInventory;
+  /// Returns an inventory with all stored archived items
+  Future<Inventory> get archivedInventory;
 }
