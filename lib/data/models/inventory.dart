@@ -8,12 +8,12 @@ class Inventory {
 
   Inventory();
   Inventory.fromJSON(String json) {
-    var read_items = jsonDecode(json);
+    var readItems = jsonDecode(json);
 
-    assert(read_items is List);
+    assert(readItems is List);
     Set<int> ids = {};
 
-    for (Map item in read_items) {
+    for (Map item in readItems) {
       int? id = item['id'];
 
       assert(id != null);
