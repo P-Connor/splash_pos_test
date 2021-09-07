@@ -112,11 +112,19 @@ class CartListItem extends StatelessWidget {
 
   Widget _buildItemInfo() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(name),
-        Expanded(child: SizedBox()),
-        Text(quantity.toString().padLeft(4)),
-        Text(price.toString().padLeft(10)),
+        Flexible(
+          fit: FlexFit.tight,
+          child: Text(
+            name,
+            maxLines: 1,
+            overflow: TextOverflow.clip,
+            softWrap: false,
+          ),
+        ),
+        Text(quantity.toString().padLeft(4), overflow: TextOverflow.fade),
+        Text(price.toString().padLeft(10), overflow: TextOverflow.fade),
       ],
     );
   }
