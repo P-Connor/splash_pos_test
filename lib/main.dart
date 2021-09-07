@@ -34,6 +34,7 @@ class App extends StatelessWidget {
           primaryColor: Color(0xff0277bd),
           accentColor: Color(0xffffecb3),
           backgroundColor: Color(0xffffffff),
+          dividerColor: Colors.blueGrey.shade200,
           buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
           iconTheme: IconThemeData(color: Colors.black, size: 20),
           fontFamily: 'Georgia',

@@ -9,8 +9,12 @@ class CartEditor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration:
-          BoxDecoration(border: Border.all(color: Colors.blueGrey.shade200)),
+      decoration: BoxDecoration(
+        border: Border(
+          left: BorderSide(color: Theme.of(context).dividerColor),
+          right: BorderSide(color: Theme.of(context).dividerColor),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
