@@ -18,20 +18,26 @@ class CartEditor extends StatelessWidget {
             builder: (context, state) {
               return Row(
                 children: [
-                  TextButton(
+                  OutlinedButton(
                       child: Text("Undo"),
                       onPressed: state.undoable
                           ? () {
                               BlocProvider.of<CartCubit>(context).undo();
                             }
                           : null),
-                  TextButton(
+                  OutlinedButton(
                       child: Text("Redo"),
                       onPressed: state.redoable
                           ? () {
                               BlocProvider.of<CartCubit>(context).redo();
                             }
                           : null),
+                  Expanded(child: SizedBox()),
+                  OutlinedButton(
+                      child: Text("Clear"),
+                      onPressed: () {
+                        BlocProvider.of<CartCubit>(context).clear();
+                      }),
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,
               );

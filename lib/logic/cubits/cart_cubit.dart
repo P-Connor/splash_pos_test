@@ -119,6 +119,11 @@ class CartCubit extends Cubit<CartState> {
     emit(state.getNewWith(items: newItems));
   }
 
+  void clear() {
+    _saveState();
+    emit(CartState(status: CartStatus.modifySuccess, undoable: true));
+  }
+
   void undo() {
     if (_undoStack.size() == 0) {
       emit(state.getNewWith(status: CartStatus.modifyFailure));
