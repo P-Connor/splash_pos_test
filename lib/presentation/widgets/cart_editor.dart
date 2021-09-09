@@ -78,8 +78,8 @@ class CartListView extends StatelessWidget {
           style: TextButton.styleFrom(
               textStyle: Theme.of(context).textTheme.caption)),
       child: Container(
-        decoration:
-            BoxDecoration(border: Border.all(color: Colors.blueGrey.shade200)),
+        decoration: BoxDecoration(
+            border: Border.all(color: Theme.of(context).dividerColor)),
         clipBehavior: Clip.hardEdge,
         child: BlocBuilder<CartCubit, CartState>(
           builder: (context, state) {
@@ -149,26 +149,51 @@ class CartListItem extends StatelessWidget {
         children: [
           _buildItemInfo(),
           SizedBox(height: 5),
-          IconTheme(
-            data: IconThemeData(color: Colors.black, size: 18),
+          TextButtonTheme(
+            data: TextButtonThemeData(
+                style: TextButton.styleFrom(primary: Colors.grey.shade800)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
-                    child: Icon(Icons.add),
-                    onPressed: () {
-                      BlocProvider.of<CartCubit>(context).incrementSelected();
-                    }),
-                TextButton(
-                    child: Icon(Icons.remove),
-                    onPressed: () {
-                      BlocProvider.of<CartCubit>(context).decrementSelected();
-                    }),
-                TextButton(
-                    child: Icon(Icons.delete),
-                    onPressed: () {
-                      BlocProvider.of<CartCubit>(context).removeSelected();
-                    }),
+                // TODO - extract icon buttons into separate widget class
+                SizedBox(
+                  width: Theme.of(context).iconTheme.size! * 2,
+                  child: Tooltip(
+                    message: "Increase quantity",
+                    waitDuration: Duration(seconds: 1),
+                    child: TextButton(
+                        child: Icon(Icons.add),
+                        onPressed: () {
+                          BlocProvider.of<CartCubit>(context)
+                              .incrementSelected();
+                        }),
+                  ),
+                ),
+                SizedBox(
+                  width: Theme.of(context).iconTheme.size! * 2,
+                  child: Tooltip(
+                    message: "Decrease quantity",
+                    waitDuration: Duration(seconds: 1),
+                    child: TextButton(
+                        child: Icon(Icons.remove),
+                        onPressed: () {
+                          BlocProvider.of<CartCubit>(context)
+                              .decrementSelected();
+                        }),
+                  ),
+                ),
+                SizedBox(
+                  width: Theme.of(context).iconTheme.size! * 2,
+                  child: Tooltip(
+                    message: "Remove",
+                    waitDuration: Duration(seconds: 1),
+                    child: TextButton(
+                        child: Icon(Icons.delete),
+                        onPressed: () {
+                          BlocProvider.of<CartCubit>(context).removeSelected();
+                        }),
+                  ),
+                ),
               ],
             ),
           )
@@ -180,6 +205,7 @@ class CartListItem extends StatelessWidget {
       style: TextButton.styleFrom(primary: Colors.black),
       child: Container(
         padding: const EdgeInsets.all(5),
+        color: selected ? Theme.of(context).selectedRowColor : null,
         child: content,
       ),
       onPressed: () {

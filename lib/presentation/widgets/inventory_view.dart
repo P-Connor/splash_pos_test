@@ -70,14 +70,14 @@ class InventoryButton extends StatelessWidget {
     return LimitedBox(
       child: Container(
           child: TextButton(
-            style: TextButton.styleFrom(primary: Colors.white),
+            style: TextButton.styleFrom(primary: Colors.grey.shade700),
             child: Text(displayName, textAlign: TextAlign.center),
             onPressed: () {
               BlocProvider.of<CartCubit>(context).addItem(itemId);
             },
           ),
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColorLight,
+            color: Theme.of(context).accentColor,
             borderRadius: BorderRadius.circular(8),
           )),
       maxWidth: maxSize,
