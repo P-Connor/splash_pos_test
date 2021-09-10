@@ -73,6 +73,8 @@ class CartEditor extends StatelessWidget {
 class CartListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScrollController _sc = ScrollController(initialScrollOffset: 1);
+
     return TextButtonTheme(
       data: TextButtonThemeData(
           style: TextButton.styleFrom(
@@ -86,8 +88,12 @@ class CartListView extends StatelessWidget {
             if (state.status == CartStatus.modifyFailure)
               return Text("Failed to modify");
 
+            WidgetsBinding.instance?.addPostFrameCallback(
+                (_) => {_sc.jumpTo(_sc.position.maxScrollExtent)});
+
             return ListView.builder(
                 itemCount: state.items.length,
+                controller: _sc,
                 itemBuilder: (BuildContext context, int index) {
                   var thisItem = state.items[index];
                   return CartListItem(
