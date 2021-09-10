@@ -33,17 +33,17 @@ class App extends StatelessWidget {
           // TODO - externalize theme into settings json file
           brightness: Brightness.light,
           primaryColor: Color(0xff0277bd),
-          accentColor: Color(0xfffecfbb),
+          accentColor: Color(0xfffceae8),
           backgroundColor: Color(0xffffffff),
           dividerColor: Colors.blueGrey.shade100,
-          selectedRowColor: Color(0xfffecfbb),
+          selectedRowColor: Color(0xfffceae8),
           buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
           outlinedButtonTheme: OutlinedButtonThemeData(
               style: OutlinedButton.styleFrom(
             backgroundColor: Color(0xffffffff),
             side: BorderSide(width: 1, color: Colors.blueGrey.shade100),
           )),
-          iconTheme: IconThemeData(color: Colors.black, size: 20),
+          iconTheme: IconThemeData(size: 20, color: Colors.white),
           fontFamily: 'Georgia',
           textTheme: TextTheme(
             headline1: GoogleFonts.montserrat(
@@ -73,10 +73,10 @@ class App extends StatelessWidget {
             caption: GoogleFonts.robotoMono(
                 fontSize: 14,
                 fontWeight: FontWeight.w300,
-                letterSpacing: 0.4,
+                letterSpacing: 0.3,
                 color: Colors.white),
             overline: GoogleFonts.robotoMono(
-                fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1.5),
+                fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: .8),
           )),
     );
   }
