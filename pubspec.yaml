@@ -28,6 +28,7 @@ dependencies:
   google_fonts: ^2.1.0
   flutter_slidable: ^0.6.0
   stack: ^0.2.1
+  intl: ^0.17.0
   currency:
     path: packages/currency
 
