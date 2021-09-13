@@ -2,6 +2,8 @@ part of 'cart_cubit.dart';
 
 enum CartStatus {
   initial,
+  addSuccess,
+  removeSuccess,
   modifySuccess,
   modifyFailure,
 }
@@ -10,17 +12,9 @@ enum CartStatus {
 class CartState extends Equatable {
   final List<CartItem> items;
   final int discountId;
-  final CartStatus status;
   final int selected;
   final bool undoable, redoable;
-
-  Currency get subtotal {
-    Currency subtotal = Currency(0);
-    for (CartItem item in items) {
-      subtotal += item.itemPrice * item.quantity.toDouble();
-    }
-    return subtotal;
-  }
+  final CartStatus status;
 
   const CartState({
     this.items = const [],
@@ -30,6 +24,14 @@ class CartState extends Equatable {
     this.undoable = false,
     this.redoable = false,
   });
+
+  Currency get subtotal {
+    Currency subtotal = Currency(0);
+    for (CartItem item in items) {
+      subtotal += item.itemPrice * item.quantity.toDouble();
+    }
+    return subtotal;
+  }
 
   @override
   List<Object?> get props =>
