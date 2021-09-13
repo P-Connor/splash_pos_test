@@ -43,6 +43,8 @@ class App extends StatelessWidget {
             backgroundColor: Color(0xffffffff),
             side: BorderSide(width: 1, color: Colors.blueGrey.shade100),
           )),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(primary: Color(0xff0277bd))),
           iconTheme: IconThemeData(size: 20, color: Colors.white),
           fontFamily: 'Georgia',
           textTheme: TextTheme(

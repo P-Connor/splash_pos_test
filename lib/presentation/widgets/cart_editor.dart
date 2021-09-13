@@ -52,17 +52,13 @@ class CartEditor extends StatelessWidget {
           CartTotalView(),
           SizedBox(height: 10),
           SizedBox(
-            child: Container(
-              color: Theme.of(context).primaryColor,
-              child: TextButton(
-                style: TextButton.styleFrom(primary: Colors.white),
+            height: 50,
+            child: ElevatedButton(
                 child: Text(
                   "Complete Sale",
                 ),
                 onPressed: () {},
               ),
-            ),
-            height: 50,
           ),
         ],
       ),
