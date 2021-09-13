@@ -16,17 +16,17 @@ class CartCubit extends Cubit<CartState> {
   CartCubit(this._inventoryRepository) : super(CartState());
 
   final InventoryRepository _inventoryRepository;
-  // TODO - Make private later
-  Inventory? loadedInventory;
+  // TODO - Move this later?
+  Inventory? _loadedInventory;
 
   Stack<CartState> _undoStack = Stack<CartState>();
   Stack<CartState> _redoStack = Stack<CartState>();
 
   void addItem(int id, {int quantity = 1}) async {
-    if (loadedInventory == null) {
+    if (_loadedInventory == null) {
       try {
-        loadedInventory = await _inventoryRepository.activeInventory;
-        assert(loadedInventory != null);
+        _loadedInventory = await _inventoryRepository.activeInventory;
+        assert(_loadedInventory != null);
       } catch (MockInventoryApiFailure) {
         _saveState();
         emit(state.getNewWith(status: CartStatus.modifyFailure));
@@ -35,7 +35,7 @@ class CartCubit extends Cubit<CartState> {
     }
     _saveState();
 
-    InventoryItem? itemData = loadedInventory?.getItem(id);
+    InventoryItem? itemData = _loadedInventory?.getItem(id);
     if (itemData == null) {
       emit(state.getNewWith(status: CartStatus.modifyFailure));
       return;
